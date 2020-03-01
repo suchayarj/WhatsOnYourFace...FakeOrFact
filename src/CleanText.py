@@ -48,13 +48,19 @@ def cleanText2(wordSeries):
         
         return wordSeries
 
-def vectorize(X, max_feat, ngram=1):
+def vectorize(wordSeries, max_feat, ngram=1):
     '''
-    X: Detokenized Column
+    input
+    wordSeries: Detokenized wordSeries
     max_features: maximum features wanted (int)
     ngram_range: (n,n) 
+
+    output
+    vector ready to be used in MLP model
     '''
     tfidf = TfidfVectorizer(max_features = max_feat, ngram_range = (1,ngram))
     doc_tfidf_matrix = tfidf.fit_transform(X).todense()
     vector = pd.DataFrame(doc_tfidf_matrix, X = tfidf.get_feature_names())
     return vector
+
+
