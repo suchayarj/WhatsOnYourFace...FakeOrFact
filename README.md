@@ -88,7 +88,7 @@ In this case, I choose to minimize the False Negative as much as possible so tha
 
 **RESULT**
 <p align="center">
-<img src="img/LossDistMakeup.png" width = 700>
+<img src="img/LossDistMakeup.png" >
 </p>
 
 Setting different thresholds for Sephora reviews
