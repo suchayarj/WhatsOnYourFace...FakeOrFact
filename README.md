@@ -6,14 +6,14 @@
 
 Presentation link: https://docs.google.com/presentation/d/1R_a06wiNli2U6VWdJesA7fPcBYRkzlSy-pXg5CKK1ZI/edit?usp=sharing
 
-**MOTIVATION** 
+**MOTIVATION & GOAL** 
 
-This project is a continuation from my previous project, What's on Your Face... Be Honest( https://github.com/suchayarj/WhatsOnYourFace...BeHonest), where I utilized One-Class SVM to identify fake reviews on Sephora. The only apparent difference from Fake and Authentic reviews from last project was the length of the review. I am attempting to improve the model's performance by utilizing Autoencoder Neural Network (MLP) for anomaly detection and include rating feature as well.
+This project is a continuation from my previous project, What's on Your Face... Be Honest( https://github.com/suchayarj/WhatsOnYourFace...BeHonest), where I utilized One-Class SVM to identify fake reviews on Sephora. The only apparent difference from Fake and Authentic reviews from last project was the length of the review. I am attempting to improve the model's performance by utilizing Autoencoder Neural Network (MLP) for anomaly detection to classify Sephora reviews into fake and authentic classes.
 
-It's important for both business and consumer sides to be able to identify deceptive and authentic reviews. Consumer never knows if business hire anyone to write good reviews or business' competitors might discredit them by writing deceptive reviews. On the other hands, to build an honest brand image, business side needs make sure that all their reviews are genuine. If they hire someone to write fake reviews, the truth will reveal sooner or later (SundayRiley's case for example)
+It's important for both business and consumer sides to be able to identify deceptive and authentic reviews. Consumer never knows if business hire anyone to write good reviews or business' competitors might discredit them by writing deceptive reviews. On the other hands, to build an honest brand image, business side needs make sure that all their reviews are genuine. If they hire someone to write fake reviews, the truth will reveal sooner or later (SundayRiley's case for example, see https://www.cnn.com/2019/10/22/us/sunday-riley-fake-reviews-trnd/index.html)
 
 
-**DATASET**
+**DATASETS**
 
 - Dataset used to train and evaluate the model 
     - **Yelp Review Dataset** from https://github.com/zzhang83/Yelp_Sentiment_Analysis. The reviews had been labeled to True & Deceptive. This dataset is needed in order to train, tune, and evaluate my model since I will be using neural network and I need to assure that my model works with labeled data first.
@@ -56,7 +56,7 @@ Modeling workflow:
     <img src="img/LossDistYelp.png" width = 800>
     </p>
 
-**Picking Threshold**
+**Picking Thresholds**
 - After plotting the loss distribution, I can set anomaly threshold at different values. I picked 4 threshold values from the overlapping area and created confusion matrices.
 - Business can pick the threshold that is suitable for the type of problems they are solving. 
 
