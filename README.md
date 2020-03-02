@@ -61,7 +61,7 @@ Modeling workflow:
 - Plot the loss distribution to see how different Authentic/Deceptive reviews are and also to determine the anomaly threshold.
 
  <p align="center">
-    <img src="img/LossDistYelp.png" width = 700>
+    <img src="img/LossDistYelp.png" width = 800>
     </p>
 
 **Picking Threshold**
