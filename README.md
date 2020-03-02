@@ -8,8 +8,8 @@ Presentation link: https://docs.google.com/presentation/d/1R_a06wiNli2U6VWdJesA7
 
 **DIRECTORY**
 - src/ : contains py files with functions for the following purposes.
-    - CleanText.py : review text pre-processing
-    - Model.py : to model using Neural Network MLP for anomaly detection
+    - CleanText.py : to pre-process review texts
+    - Model.py : to model using Neural Network MLP Autoencoder for anomaly detection
     - webscrape-makeupalley.py : to webscrape skincare reviews from MakeupAlley.com
 - img/ : contains graphs and images 
 - data/ : contains samples of data used in this project 
@@ -28,7 +28,7 @@ It's important for both business and consumer sides to be able to identify decep
 
 - Makeup dataset
     - **Training set** : creating my own dataset by performing a webscaping from www.makeupalley.com utilizing BeautifulSoup. The dataset consists of approximately 230,000 entries. I am treating reviews from this website as **authentic** class since this website's sole purpose is for beauty community to share opinions and it's widely known for its honest reviews
-    - **Testing set**: I am combining 2 existing Sephora Skincare Review datasets found on Github (https://github.com/nanafwu/sephora-reviews-nlp/blob/master/data/sephora_review.csv and ) These are reviews scraped from from www.sephora.com. Reviews from Sephora are more diverse. It consists of both authentic and fake.
+    - **Testing set**: I am combining 2 existing Sephora Skincare Review datasets found on Github (https://github.com/nanafwu/sephora-reviews-nlp/blob/master/data/sephora_review.csv and https://github.com/anselsantos/sephora_scrapy/blob/master/the-ordinary_reviews.csv) These are reviews scraped from from www.sephora.com. Reviews from Sephora are more diverse. It consists of both authentic and fake.
 
 **EDA(Recap)**
 - Ratings:
@@ -45,51 +45,69 @@ Reviews on make up Makeup Alley tends to be longer than Sephora. The median of M
     </p>
 
 
-**WORKFLOW**
-- Clean review text, tokenize, stem, vectorize 
-- Incorperate rating feature into the model
-- Test model on Yelp reviews where the labels are available (True/Deceptive)
-- Tune model
-- Apply the model on MakeupAlley and Sephora dataset
 
+**MODELING - Anomaly Detection with MLP Autoencoder**
 
-**MODELING - Anamoly Detection with MLP Autoencoder**
-- Since I have dataset on only one class, anomaly detection is the most appropriate method. I'm detecting anomaly by the mean squared error loss. If the loss is higher than the threshold, then it's classified as Fake/Deceptive reviews
-- Create autoencoder MLP model to detect anomaly with the use of sequential information 
-    - Loss Function: Mean Squared Error. Since we are trying to reproduce the input with  this model. The model will tryto minimize the MSE
-- Fit the model with authentic Yelp reviews training set
-- Evaluate the loss for the authentic Yelp reviews and deceptive reviews
-- Plot the loss distribution to determine the anomaly threshold for Authentic/Deceptive reviews
+ Since I have dataset on only one class (Authentic), anomaly detection is the most appropriate method. I am also using mean square error as loss function because I am trying to reproduce the input using Autoencoder where it aims to minimize the MSE. 
+ 
+ The main idea of anomaly detection is that if the loss of the input data (review & rating) is higher than the threshold, then it's considered as anomaly (or Fake review in this case)
+
+Modeling workflow:
+- Create autoencoder nueral network MLP model 
+- Run model multiple times with different parameters (Activation, Loss, Optimizer) and layers
+    - In my case, the loss value is very low. No matter how much I tuned the parameter or how many layers I used, the loss values are almost identical. So, I ended up choosing a simple model for efficiency.
+- Train the mode with authentic Yelp reviews 
+- Evaluate the loss (MSE) for the authentic Yelp reviews and deceptive reviews
+- Plot the loss distribution to see how different Authentic/Deceptive reviews are and also to determine the anomaly threshold.
 
  <p align="center">
     <img src="img/LossDistYelp.png">
     </p>
 
-The graph above shows the loss distribution of Authentic Reviews and Deceptive Reviews from Yelp Dataset
+**Picking Threshold**
+- After plotting the loss distribution, I can set anomaly threshold at different values. I picked 4 threshold values from the overlapping area and created confusion matrices.
+- Business can pick the threshold that is suitable for the type of problems they are solving. 
 
-Picking Threshold
-- Business can pick threshold that suitable for the type of problems they are solving. 
-
-- Setting anomaly threshold at different values according to the loss distribution above
  <p align="center">
-<img src="img/confusions.png">
+<img src="img/confusionswithpr.png" width='500'/>
 </p>
+
 
 
 Precision-Recall
  <p align="center">
-<img src="img/precision_recall.png">
+<img src="img/precision_recall_label.png">
 </p>
 
-In this case, I choose to minimize the False Negative as much as possible so that all anamolies are being classified as Fake. Therefore, I chose the threshold at 0.00094 where the loss distribution of deceptive review starts.
+In this case, I choose to minimize the False Negative as much as possible so that all anomalies are being classified as Fake. Therefore, I chose the threshold at 0.00094 where the loss distribution of deceptive review roughly starts.
+
+**Training th emodel with makeup dataset**
+- Train the model with Makeup Alley dataset
+- Evaluate the loss for the authentic Makeup reviews and Sephora reviews
+- Plot loss distribution for Makeup Alley and Sephora
+
+**RESULT**
+<p align="center">
+<img src="img/LossDistMakeup.png">
+</p>
+
+Setting different thresholds for Sephora reviews
+<p align="center">
+<img src="img/sephorathreshold.png" width = 250>
+</p>
+
+Samples for Sephora reviews classified as Authentic
+<p align="center">
+<img src="img/reviewsamp.png">
+</p>
+Now, the length of the review is no longer the classifier since the review is classified by the loss. However, Sephora loss distribution is so different from Makeup Alley and make it seems as though Sephora are mostly fake. It could be because overfitting of Makeup Alley data or text pre-processing problems. So, I will try the following:
+    - Adjust text pre-processing, stopwords, and vectorization for reviews
+    - Test on bigger Sephora reviews dataset
 
 
-
-**FUTURE WORK**
-- Anomaly detection with RNNs LSTM.
-    - LSTM might improve the performance since it has a memory that captures what have been calculated so far which is ideal for text & speech analysis
-
-- Test on bigger dataset of Sephora reviews and classify the reviews by brands
-
-- I am working on creating Google Chrome Extension where website users can see if reviews they are looking at are authentic or not based on my machine learning model
+**MORE FUTURE WORK**
+- Obtain more Sephora data. Once it is obtained, I would like to evaluate the reviews by brands, especially on Sunday Riley who had scandals about fake reviews.
+- Build Anomaly detection with RNNs LSTM.
+    - LSTM might improve the performance since it has a memory that captures what have been calculated so far, which is ideal for text & speech analysis
+- Work on creating Google Chrome Extension where Sephora web users can see if reviews they are looking at are authentic or not based on my machine learning model
 
