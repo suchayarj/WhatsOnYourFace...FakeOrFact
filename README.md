@@ -74,7 +74,7 @@ Precision-Recall
 In this case, I choose to minimize the False Negative as much as possible so that all anomalies are being classified as Fake. Therefore, I chose the threshold at 0.00094 where the loss distribution of deceptive review roughly starts.
 
 **Training model with makeup dataset**
-- Train the model with Makeup Alley dataset
+- Now that I have the model and possible thresholds I can use, I can start training the model with Makeup Alley dataset
 - Evaluate the loss for the authentic Makeup reviews and Sephora reviews
 - Plot loss distribution for Makeup Alley and Sephora
 
@@ -82,15 +82,15 @@ In this case, I choose to minimize the False Negative as much as possible so tha
 <img src="img/LossDistMakeup.png" width = 800 >
 </p>
 
-I find that Sephora loss distribution is so different from Makeup Alley and make it seems as though Sephora reviews are mostly fake. It could be because of overfitting of Makeup Alley data, text pre-processing problems, and small size of Sephora dataset which makes it less diverse. So, I will try the following:
-    - Adjust text pre-processing, stopwords, and vectorization for reviews
-    - Test on bigger Sephora reviews dataset
+Note: I find that Sephora loss distribution is so different from Makeup Alley and make it seems as though Sephora reviews are mostly fake. It could be because of overfitting of Makeup Alley data, text pre-processing problems, and small size of Sephora dataset which makes it less diverse. So, I will try the following:
+- Adjust text pre-processing, stopwords, and vectorization for reviews
+- Test on bigger Sephora reviews dataset
 
-However, I will use this information to get the results for now.
+However, I will use this information to get some possible results for now.
 
-**RESULT**
+**RESULTS**
 
-Setting different thresholds for Sephora reviews
+I set different thresholds for Sephora reviews and got the following results.
 <p align="center">
 <img src="img/sephorathreshold.png" width = 250>
 </p>
