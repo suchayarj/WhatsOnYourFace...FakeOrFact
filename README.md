@@ -69,14 +69,14 @@ Modeling workflow:
 - Business can pick the threshold that is suitable for the type of problems they are solving. 
 
  <p align="center">
-<img src="img/confusionswithpr.png" width='500'/>
+<img src="img/confusionswithpr.png">
 </p>
 
 
 
 Precision-Recall
  <p align="center">
-<img src="img/precision_recall_label.png">
+<img src="img/precision_recall_label.png" width =400>
 </p>
 
 In this case, I choose to minimize the False Negative as much as possible so that all anomalies are being classified as Fake. Therefore, I chose the threshold at 0.00094 where the loss distribution of deceptive review roughly starts.
@@ -88,7 +88,7 @@ In this case, I choose to minimize the False Negative as much as possible so tha
 
 **RESULT**
 <p align="center">
-<img src="img/LossDistMakeup.png">
+<img src="img/LossDistMakeup.png" width = 500>
 </p>
 
 Setting different thresholds for Sephora reviews
