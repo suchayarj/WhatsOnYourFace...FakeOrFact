@@ -61,7 +61,7 @@ Modeling workflow:
 - Plot the loss distribution to see how different Authentic/Deceptive reviews are and also to determine the anomaly threshold.
 
  <p align="center">
-    <img src="img/LossDistYelp.png">
+    <img src="img/LossDistYelp.png" width = 700>
     </p>
 
 **Picking Threshold**
@@ -88,7 +88,7 @@ In this case, I choose to minimize the False Negative as much as possible so tha
 
 **RESULT**
 <p align="center">
-<img src="img/LossDistMakeup.png" width = 600>
+<img src="img/LossDistMakeup.png" width = 700>
 </p>
 
 Setting different thresholds for Sephora reviews
