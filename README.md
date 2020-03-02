@@ -81,16 +81,17 @@ Precision-Recall
 
 In this case, I choose to minimize the False Negative as much as possible so that all anomalies are being classified as Fake. Therefore, I chose the threshold at 0.00094 where the loss distribution of deceptive review roughly starts.
 
-**Training th emodel with makeup dataset**
+**Training model with makeup dataset**
 - Train the model with Makeup Alley dataset
 - Evaluate the loss for the authentic Makeup reviews and Sephora reviews
 - Plot loss distribution for Makeup Alley and Sephora
 
-**RESULT**
 <p align="center">
 <img src="img/LossDistMakeup.png" >
 </p>
 
+
+**RESULT**
 Setting different thresholds for Sephora reviews
 <p align="center">
 <img src="img/sephorathreshold.png" width = 250>
