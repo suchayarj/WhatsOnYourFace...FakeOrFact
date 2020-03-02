@@ -6,14 +6,6 @@
 
 Presentation link: https://docs.google.com/presentation/d/1R_a06wiNli2U6VWdJesA7fPcBYRkzlSy-pXg5CKK1ZI/edit?usp=sharing
 
-**DIRECTORY**
-- src/ : contains py files with functions for the following purposes.
-    - CleanText.py : to pre-process review texts
-    - Model.py : to model using Neural Network MLP Autoencoder for anomaly detection
-    - webscrape-makeupalley.py : to webscrape skincare reviews from MakeupAlley.com
-- img/ : contains graphs and images 
-- data/ : contains samples of data used in this project 
-
 **MOTIVATION** 
 
 This project is a continuation from my previous project, What's on Your Face... Be Honest( https://github.com/suchayarj/WhatsOnYourFace...BeHonest), where I utilized One-Class SVM to identify fake reviews on Sephora. The only apparent difference from Fake and Authentic reviews from last project was the length of the review. I am attempting to improve the model's performance by utilizing Autoencoder Neural Network (MLP) for anomaly detection and include rating feature as well.
@@ -94,7 +86,7 @@ In this case, I choose to minimize the False Negative as much as possible so tha
 >>>>>>> readme
 </p>
 
-I find that Sephora loss distribution is so different from Makeup Alley and make it seems as though Sephora are mostly fake. It could be because overfitting of Makeup Alley data or text pre-processing problems. So, I will try the following:
+I find that Sephora loss distribution is so different from Makeup Alley and make it seems as though Sephora reviews are mostly fake. It could be because of overfitting of Makeup Alley data, text pre-processing problems, and small size of Sephora dataset which makes it less diverse. So, I will try the following:
     - Adjust text pre-processing, stopwords, and vectorization for reviews
     - Test on bigger Sephora reviews dataset
 
@@ -120,4 +112,14 @@ From the review samples above, it's apparent that the length of the review is no
 - Build Anomaly detection with RNNs LSTM.
     - LSTM might improve the performance since it has a memory that captures what have been calculated so far, which is ideal for text & speech analysis
 - Work on creating Google Chrome Extension where Sephora web users can see if reviews they are looking at are authentic or not based on my machine learning model
+
+**DIRECTORY**
+- src/ : contains py files with functions for the following purposes.
+    - combine_sephora_data.py :  to combine 2 existing Sephora datasets obtain from Github
+    - CleanText.py : to pre-process review texts
+    - ModelYelp.py : to model Yelp data with Neural Network MLP Autoencoder for anomaly detection
+    - ModelMakeup.py : to model Makeup data with Neural Network MLP Autoencoder for anomaly detection
+    - webscrape-makeupalley.py : to webscrape skincare reviews from MakeupAlley.com
+- img/ : contains graphs and images 
+- data/ : contains samples of data used in this project 
 
