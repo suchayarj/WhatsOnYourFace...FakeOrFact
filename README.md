@@ -90,21 +90,26 @@ In this case, I choose to minimize the False Negative as much as possible so tha
 <img src="img/LossDistMakeup.png" width = 800 >
 </p>
 
+I find that Sephora loss distribution is so different from Makeup Alley and make it seems as though Sephora are mostly fake. It could be because overfitting of Makeup Alley data or text pre-processing problems. So, I will try the following:
+    - Adjust text pre-processing, stopwords, and vectorization for reviews
+    - Test on bigger Sephora reviews dataset
+
+However, I will use this information to get the results for now.
 
 **RESULT**
+
 Setting different thresholds for Sephora reviews
 <p align="center">
 <img src="img/sephorathreshold.png" width = 250>
 </p>
+As you can see from the image above, only 0.1% of Sephora reviews are classified as authentic when the threshold is set at 0.00094, and so on.
 
-Samples for Sephora reviews classified as Authentic
+Examples of Sephora reviews that are classified as Authentic with threshold 0.00094
 <p align="center">
 <img src="img/reviewsamp.png">
 </p>
-Now, the length of the review is no longer the classifier since the review is classified by the loss. However, Sephora loss distribution is so different from Makeup Alley and make it seems as though Sephora are mostly fake. It could be because overfitting of Makeup Alley data or text pre-processing problems. So, I will try the following:
-    - Adjust text pre-processing, stopwords, and vectorization for reviews
-    - Test on bigger Sephora reviews dataset
 
+From the review samples above, it's apparent that the length of the review is no longer the classifier.
 
 **MORE FUTURE WORK**
 - Obtain more Sephora data. Once it is obtained, I would like to evaluate the reviews by brands, especially on Sunday Riley who had scandals about fake reviews.
