@@ -87,7 +87,7 @@ In this case, I choose to minimize the False Negative as much as possible so tha
 - Plot loss distribution for Makeup Alley and Sephora
 
 <p align="center">
-<img src="img/LossDistMakeup.png" >
+<img src="img/LossDistMakeup.png" width = 800 >
 </p>
 
 
