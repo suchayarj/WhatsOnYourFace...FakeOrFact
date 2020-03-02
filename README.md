@@ -79,11 +79,7 @@ In this case, I choose to minimize the False Negative as much as possible so tha
 - Plot loss distribution for Makeup Alley and Sephora
 
 <p align="center">
-<<<<<<< HEAD
 <img src="img/LossDistMakeup.png" width = 800 >
-=======
-<img src="img/LossDistMakeup.png" >
->>>>>>> readme
 </p>
 
 I find that Sephora loss distribution is so different from Makeup Alley and make it seems as though Sephora reviews are mostly fake. It could be because of overfitting of Makeup Alley data, text pre-processing problems, and small size of Sephora dataset which makes it less diverse. So, I will try the following:
